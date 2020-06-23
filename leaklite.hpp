@@ -36,9 +36,11 @@ extern "C" {
 }
 #include <new>
 
+#if !defined(__cpp_aligned_new)
 namespace std {
 enum class align_val_t: size_t {};
 }
+#endif
 
 #ifdef NO_LAMBDA_LEAKLITE
 static inline void *leaklite_new(size_t size, size_t *align, leaklite_alloc_tracker_t *tracker,
