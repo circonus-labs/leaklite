@@ -2,6 +2,8 @@
 
 To use leaklite with your project, simply add the source files to your project as your first step.  If you are using the Mt. Everest library (libmtev), you can use the rest_leaklite files as they are.  If not, you can modify them to expose the current memory allocation dump by using any other suitable REST API or other mechanism.
 
+The initial version requires a hash to store pointers in order to ignore frees/deletes which were not instrumented with leaklite.  For thread safety the excellent Concurrency Kit library (http://concurrencykit.org) and a pair of helper files called "pointer_hash" have been used.  Further experiments are being done to try to remove this dependency in the future.
+
 Each C++ and C file that you wish to monitor will need the appropriate ".h" or ".hpp" file included.  Preferably, this #include would be placed at the end of all of the 3rd-party includes but before any includes that you may have code within that perform alloc/new or free/delete.
 
 C++:
